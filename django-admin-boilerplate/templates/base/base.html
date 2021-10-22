@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This is Dashboard Panel for any Django Projects">
+        <meta name="author" content="Sajib Hossain">
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/logo.png' %}">
+        <title>Djano Dashboard Boilerplate</title>
+        <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/" />
+        <!-- Custom CSS -->
+        {% include 'base/css.html' %}
+        <!-- extra CSS -->
+        {% block extracss %}
+        {% endblock extracss %}
+    </head>
+
+    <body>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+
+        <!-- Main wrapper -->
+        <div id="main-wrapper">
+            <!-- Topbar header -->
+            {% include 'base/navbar.html' %}
+            <!-- Left Sidebar  -->
+            {% include 'base/sidebar.html' %}
+            <!-- Page wrapper  -->
+            <div class="page-wrapper">
+                <!-- Bread crumb -->
+                {% block breadcrumb %}
+                {% endblock breadcrumb %}
+                <!-- Content  -->
+                {% block content %}
+                {% endblock content %}
+                <!-- footer -->
+                {% include 'base/footer.html' %}
+            </div>
+        </div>
+        <!-- End Wrapper -->
+        
+        <!-- customizer Panel -->
+        {% include 'base/customizer.html' %}
+        <!-- chat windows -->
+        <div class="chat-windows"></div>
+        <!-- All Jquery -->
+        {% include 'base/js.html' %}
+        <!-- extra Jquery -->
+        {% block extrajs %}
+        {% endblock extrajs %}
+    </body>
+</html>

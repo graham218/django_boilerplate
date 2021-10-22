@@ -1,0 +1,420 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extracss %}
+<link href="{% static 'assets/extra-libs/css-chart/css-chart.css' %}" rel="stylesheet">
+<link href="{% static 'assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet" />
+{% endblock extracss %}
+
+{% block breadcrumb %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">Dashboard</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-7 align-self-center">
+            <div class="d-flex no-block justify-content-end align-items-center">
+                <div class="mr-2">
+                    <div class="lastmonth"></div>
+                </div>
+                <div class=""><small>LAST MONTH</small>
+                    <h4 class="text-info mb-0 font-medium">$58,256</h4></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Sales Summery -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="mr-2">
+                            <span>Wallet Balance</span>
+                            <h4>$3,567.53</h4>
+                        </div>
+                        <div class="ml-auto">
+                            <div style="max-width:130px; height:15px;" class="mb-5">
+                                <canvas id="balance"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-2">
+                            <span>Referral Earnings</span>
+                            <h4>$769.08</h4>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="" id="ravenue"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-2">
+                            <span>Estimated Sales</span>
+                            <h4>5769</h4>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="gaugejs-box">
+                                <canvas id="foo" class="gaugejs" height="50" width="100">guage</canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Sales Summery -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h4 class="card-title">Realtime Visits</h4>
+                            <h5 class="card-subtitle">Overview of Latest Month</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="dl">
+                                <select class="custom-select">
+                                    <option value="0" selected>Monthly</option>
+                                    <option value="1">Daily</option>
+                                    <option value="2">Weekly</option>
+                                    <option value="3">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- title -->
+                    <div class="mt-4">
+                        <div id="placeholder" class="" style="height:250px;"></div>
+                    </div>
+                </div>
+                <div class="card-body border-top">
+                    <div class="row mt-2">
+                        <!-- Column -->
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <div data-label="20%" class="css-bar mb-0 css-bar-primary css-bar-50"><i class="mdi mdi-magnify text-info"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">50%</h3><span>Search Traffic</span></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <div data-label="20%" class="css-bar mb-0 css-bar-danger css-bar-30"><i class="mdi mdi-link text-danger"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">30%</h3><span>Referal Traffic</span></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <div data-label="20%" class="css-bar mb-0 css-bar-success css-bar-10"><i class="mdi mdi-lightbulb-outline text-cyan"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">10%</h3><span>Social Media</span></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3">
+                                    <div data-label="20%" class="css-bar mb-0 css-bar-purple css-bar-10"><i class="mdi mdi-laptop-mac text-purple"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0">10%</h3><span>Direct Media</span></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Active user - project- visitors -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <h4 class="card-title">Active Users</h4>
+                    <div class="d-flex">
+                        <h2>356 <small><i class="ti-arrow-up text-success"></i></small></h2>
+                        <span class="ml-auto">Users per minute</span>
+                    </div>
+                    <div class="mt-3 mb-4 text-center">
+                        <div id="active-users"></div>
+                    </div>
+                    <h5>Top Active Pages</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">/templates/matrix-admin/ <span class="badge badge-light badge-pill">1</span></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">/panel/home.asp <span class="badge badge-info badge-pill">4</span></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">/demos/admin-t...e/index2.html</li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">/templates/adminwrap-lite/ <span class="badge badge-light badge-pill">14</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <h4 class="card-title">Device Visit</h4>
+                    <div id="visitor" style="height:267px; width:100%;" class="mt-3"></div>
+                    <!-- row -->
+                    <div class="row mt-4 mb-3">
+                        <!-- column -->
+                        <div class="col-4 birder-right text-left">
+                            <h4 class="mb-0">60%<small><i class="ti-arrow-up text-success"></i></small></h4>Desktop</div>
+                        <!-- column -->
+                        <div class="col-4 birder-right text-center">
+                            <h4 class="mb-0">28%<small><i class="ti-arrow-down text-danger"></i></small></h4>Mobile</div>
+                        <!-- column -->
+                        <div class="col-4 text-right">
+                            <h4 class="mb-0">12%<small><i class="ti-arrow-up text-success"></i></small></h4>Tablet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <div class="col-sm-12 col-lg-4">
+            <div class="card card-hover">
+                <div class="card-body">
+                    <h4 class="card-title">Visitors By Countries</h4>
+                    <div id="visitfromworld" style="width:100%; height:232px"></div>
+                    <!-- row -->
+                    <div class="row mb-3">
+                        <div class="col-3">India</div>
+                        <div class="col-7">
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">28%</div>
+                    </div>
+                    <!-- row -->
+                    <div class="row mb-3">
+                        <div class="col-3">UK</div>
+                        <div class="col-7">
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-cyan" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">21%</div>
+                    </div>
+                    <!-- row -->
+                    <div class="row mb-3">
+                        <div class="col-3">USA</div>
+                        <div class="col-7">
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">18%</div>
+                    </div>
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-3">China</div>
+                        <div class="col-7">
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-orange" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-2">12%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Table -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <div class="d-md-flex align-items-center">
+                        <div>
+                            <h4 class="card-title">Top Selling Products</h4>
+                            <h5 class="card-subtitle">Overview of Top Selling Items</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="dl">
+                                <select class="custom-select">
+                                    <option value="0" selected>Monthly</option>
+                                    <option value="1">Daily</option>
+                                    <option value="2">Weekly</option>
+                                    <option value="3">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- title -->
+                </div>
+                <div class="table-responsive">
+                    <table class="table v-middle">
+                        <thead>
+                            <tr class="bg-light">
+                                <th class="border-top-0">Products</th>
+                                <th class="border-top-0">License</th>
+                                <th class="border-top-0">Support Agent</th>
+                                <th class="border-top-0">Technology</th>
+                                <th class="border-top-0">Tickets</th>
+                                <th class="border-top-0">Sales</th>
+                                <th class="border-top-0">Earnings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-2"><a class="btn btn-circle btn-info text-white">EA</a></div>
+                                        <div class="">
+                                            <h4 class="mb-0 font-16">Elite Admin</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Single Use</td>
+                                <td>John Doe</td>
+                                <td>
+                                    <label class="label label-danger">Angular</label>
+                                </td>
+                                <td>46</td>
+                                <td>356</td>
+                                <td>
+                                    <h5 class="mb-0">$2850.06</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-2"><a class="btn btn-circle btn-orange text-white">MA</a></div>
+                                        <div class="">
+                                            <h4 class="mb-0 font-16">Monster Admin</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Single Use</td>
+                                <td>Venessa Fern</td>
+                                <td>
+                                    <label class="label label-info">Vue Js</label>
+                                </td>
+                                <td>46</td>
+                                <td>356</td>
+                                <td>
+                                    <h5 class="mb-0">$2850.06</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-2"><a class="btn btn-circle btn-success text-white">MP</a></div>
+                                        <div class="">
+                                            <h4 class="mb-0 font-16">Material Pro Admin</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Single Use</td>
+                                <td>John Doe</td>
+                                <td>
+                                    <label class="label label-success">Bootstrap</label>
+                                </td>
+                                <td>46</td>
+                                <td>356</td>
+                                <td>
+                                    <h5 class="mb-0">$2850.06</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-2"><a class="btn btn-circle btn-purple text-white">AA</a></div>
+                                        <div class="">
+                                            <h4 class="mb-0 font-16">Ample Admin</h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Single Use</td>
+                                <td>John Doe</td>
+                                <td>
+                                    <label class="label label-purple">React</label>
+                                </td>
+                                <td>46</td>
+                                <td>356</td>
+                                <td>
+                                    <h5 class="mb-0">$2850.06</h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Recent comment and chats -->
+    {% include 'base/commentandchat.html' %}
+</div>
+{% endblock content %}
+
+{% block extrajs %}
+<!--This page JavaScript -->
+<script src="{% static 'assets/extra-libs/c3/d3.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/c3/c3.min.js' %}"></script>
+<script src="{% static 'assets/libs/chart.js/dist/Chart.min.js' %}"></script>
+<script src="{% static 'assets/libs/gaugeJS/dist/gauge.min.js' %}"></script>
+<script src="{% static 'assets/libs/flot/excanvas.min.js' %}"></script>
+<script src="{% static 'assets/libs/flot/jquery.flot.js' %}"></script>
+<script src="{% static 'assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js' %}"></script>
+<script src="{% static 'assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js' %}"></script>
+<script src="{% static 'distcss/js/pages/dashboards/dashboard2.js' %}"></script>
+{% endblock extrajs %}
